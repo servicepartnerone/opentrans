@@ -13,6 +13,7 @@ namespace SE\Component\OpenTrans\Node\Order;
 use \JMS\Serializer\Annotation as Serializer;
 
 use \SE\Component\OpenTrans\Node\AbstractNode;
+use \SE\Component\OpenTrans\Node\Order\ContactNode;
 
 /**
  *
@@ -123,6 +124,17 @@ class AddressNode extends AbstractNode
      * @var string
      */
     protected $chargeVat;
+
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("CONTACT")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\ContactNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\ContactNode
+     */
+    protected $contact;
 
     /**
      *
@@ -320,5 +332,21 @@ class AddressNode extends AbstractNode
     public function getChargeVat()
     {
         return $this->chargeVat;
+    }
+
+    /**
+     * @return ContactNode
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    /**
+     * @param ContactNode $contact
+     */
+    public function setContact(ContactNode $contact)
+    {
+        $this->contact = $contact;
     }
 }

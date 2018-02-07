@@ -19,7 +19,7 @@ class DeliveryDateNodeTest extends \PHPUnit_Framework_TestCase
     {
         $loader = new \SE\Component\OpenTrans\NodeLoader();
         $node1 = new \SE\Component\OpenTrans\Node\Order\DeliveryDateNode();
-        $node2 = $loader->getInstance(\SE\Component\OpenTrans\NodeLoader::NODE_DELIVERY_DATE);
+        $node2 = $loader->getInstance(\SE\Component\OpenTrans\NodeLoader::NODE_ORDER_DELIVERYDATE);
 
         $this->assertInstanceOf('\SE\Component\OpenTrans\Node\Order\DeliveryDateNode', $node1);
         $this->assertInstanceOf('\SE\Component\OpenTrans\Node\Order\DeliveryDateNode', $node2);

@@ -118,9 +118,15 @@ class AddressNodeTest extends \PHPUnit_Framework_TestCase
         $node->setPostCode($postCode = rand(10000,99999));
         $node->setStreet($street = sha1(uniqid(microtime(true))));
 
+        $contact = new \SE\Component\OpenTrans\Node\Order\ContactNode();
+        $contact->setName($contactName = sha1(uniqid(microtime(true))));
+        $contact->setEmail($contactEmail = sha1(uniqid(microtime(true))));
+        $contact->addPhone(new \SE\Component\OpenTrans\Node\Order\PhoneNode("",sha1(uniqid(microtime(true))) ));
+        $node->setContact($contact);
+
         $xml = $serializer->serialize($node, 'xml');
         $this->assertTag($parent = array(
-            'tag' => 'ADDRESS', 'children' => array( 'count' => 10)
+            'tag' => 'ADDRESS', 'children' => array( 'count' => 11)
         ), $xml);
 
         $this->assertTag(array('parent' => $parent, 'tag' => 'NAME'), $xml);
@@ -133,6 +139,7 @@ class AddressNodeTest extends \PHPUnit_Framework_TestCase
         $this->assertTag(array('parent' => $parent, 'tag' => 'PHONE'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'EMAIL'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'CHARGE_VAT'), $xml);
+        $this->assertTag(array('parent' => $parent, 'tag' => 'CONTACT'), $xml);
 
         /* @var $actual \SE\Component\OpenTrans\Node\Order\AddressNode */
         $actual = $serializer->deserialize($xml, get_class($node), 'xml');
