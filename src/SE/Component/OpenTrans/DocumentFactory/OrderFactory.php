@@ -84,6 +84,7 @@ class OrderFactory extends AbstractDocumentFactory
 
         if(($summary = $node->getSummary()) === null) {
             $summary = $loader->getInstance(NodeLoader::NODE_ORDER_SUMMARY);
+            $summary->setTotalItemCount(count($node->getItems()));
             $node->setSummary($summary);
         }
 
