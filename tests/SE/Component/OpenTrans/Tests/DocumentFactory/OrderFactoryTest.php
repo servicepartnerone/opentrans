@@ -172,9 +172,6 @@ class OrderFactoryTest extends \PHPUnit_Framework_TestCase
                     )
                 )
             ),
-            'summary' => array(
-                'total_item_count' => ($totalItemCount = 99)
-            ),
             'custom_entry_1' => ($customEntry1 = sha1(uniqid(microtime(true)))),
             'items' => array(
                 array(
@@ -221,7 +218,7 @@ class OrderFactoryTest extends \PHPUnit_Framework_TestCase
         /* @var $object \SE\Component\OpenTrans\Node\Order\DocumentNode */
         $factory->load($object, $data);
 
-        $this->assertEquals($totalItemCount, $object->getSummary()->getTotalItemCount());
+        $this->assertEquals(count($data['items']), $object->getSummary()->getTotalItemCount());
         $this->assertEquals(array('custom_entry_1' => $customEntry1), $object->getCustomEntries());
 
         $controlInfo = $object->getHeader()->getControlInfo();
