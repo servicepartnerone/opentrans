@@ -15,6 +15,7 @@ use \JMS\Serializer\Annotation as Serializer;
 use \SE\Component\OpenTrans\Node\AbstractNode;
 use \SE\Component\OpenTrans\Node\Order\ArticleIdNode;
 use \SE\Component\OpenTrans\Node\Order\ArticlePriceNode;
+use \SE\Component\OpenTrans\Node\Order\DeliveryDateNode;
 
 /**
  *
@@ -65,6 +66,26 @@ class ItemNode extends AbstractNode
      * @var float
      */
     protected $quantity;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("DELIVERY_DATE")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\DeliveryDateNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\DeliveryDateNode
+     */
+    protected $deliveryDate;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("ORDER_UNIT")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $orderUnit;
 
     /**
      *
@@ -138,5 +159,36 @@ class ItemNode extends AbstractNode
         return $this->articlePrice;
     }
 
+    /**
+     * @return DeliveryDateNode
+     */
+    public function getDeliveryDate()
+    {
+        return $this->deliveryDate;
+    }
+
+    /**
+     * @param DeliveryDateNode $deliveryDate
+     */
+    public function setDeliveryDate(DeliveryDateNode $deliveryDate)
+    {
+        $this->deliveryDate = $deliveryDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderUnit()
+    {
+        return $this->orderUnit;
+    }
+
+    /**
+     * @param string $orderUnit
+     */
+    public function setOrderUnit($orderUnit)
+    {
+        $this->orderUnit = $orderUnit;
+    }
 
 }

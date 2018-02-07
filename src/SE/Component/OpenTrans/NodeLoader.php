@@ -38,6 +38,7 @@ class NodeLoader
     const NODE_ORDER_PARTYID         = 'node.order.partyid';
     const NODE_ORDER_REMARK          = 'node.order.remark';
     const NODE_ORDER_SUMMARY         = 'node.order.summary';
+    const NODE_DELIVERY_DATE         = 'node.order.deliverydate';
 
     /**
      *
@@ -62,6 +63,7 @@ class NodeLoader
         self::NODE_ORDER_PARTYID         => '\SE\Component\OpenTrans\Node\Order\PartyIdNode',
         self::NODE_ORDER_PARTYCOLLECTION => '\SE\Component\OpenTrans\Node\Order\PartyCollectionNode',
         self::NODE_ORDER_REMARK          => '\SE\Component\OpenTrans\Node\Order\RemarkNode',
+        self::NODE_DELIVERY_DATE         => '\SE\Component\OpenTrans\Node\Order\DeliveryDateNode',
     );
 
     /**
