@@ -116,6 +116,12 @@ class OrderInfoNodeTest extends \PHPUnit_Framework_TestCase
         $orderParties->addCustomEntry('placeholder', time());
         $node->setOrderParties($orderParties);
 
+        $deliveryDate = new \SE\Component\OpenTrans\Node\Order\DeliveryDateNode();
+        $deliveryDate->setType("test");
+        $deliveryDate->setDeliveryStartDate($endDate = new \DateTime("2001-03-28T09:30:00+01:00"));
+        $deliveryDate->setDeliveryEndDate($startDate = new \DateTime("2001-03-28T09:30:00+01:00"));
+        $node->setDeliveryDate($deliveryDate);
+
         $node->setPayment($payment = array(
             'cash' => array(
                 'bank_account' => ($bankAccount = rand(100000,9999999))
@@ -124,7 +130,7 @@ class OrderInfoNodeTest extends \PHPUnit_Framework_TestCase
 
         $xml = $serializer->serialize($node, 'xml');
         $this->assertTag($parent = array(
-            'tag' => 'ORDER_INFO', 'children' => array( 'count' => 5)
+            'tag' => 'ORDER_INFO', 'children' => array( 'count' => 6)
         ), $xml, $xml);
 
         $this->assertTag(array('parent' => $parent, 'tag' => 'ORDER_ID'), $xml);
@@ -134,6 +140,7 @@ class OrderInfoNodeTest extends \PHPUnit_Framework_TestCase
         $this->assertTag($parent1 = array('parent' => $parent, 'tag' => 'PAYMENT'), $xml);
         $this->assertTag($parent2 = array('parent' => $parent1, 'tag' => 'CASH'), $xml);
         $this->assertTag(array('parent' => $parent2, 'tag' => 'BANK_ACCOUNT'), $xml);
+        $this->assertTag(array('parent' => $parent, 'tag' => 'DELIVERY_DATE'), $xml);
 
         /* @var $actual \SE\Component\OpenTrans\Node\Order\OrderInfoNode */
         $actual = $serializer->deserialize($xml, get_class($node), 'xml');

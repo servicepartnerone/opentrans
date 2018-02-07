@@ -88,6 +88,16 @@ class OrderInfoNode extends AbstractNode
 
     /**
      *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("DELIVERY_DATE")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\DeliveryDateNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\DeliveryDateNode
+     */
+    protected $deliveryDate;
+
+    /**
+     *
      * @param \SE\Component\OpenTrans\Node\Order\RemarkNode $remark
      */
     public function addRemark(RemarkNode $remark)
@@ -205,5 +215,21 @@ class OrderInfoNode extends AbstractNode
     public function getPayment()
     {
         return $this->payment;
+    }
+
+    /**
+     * @return DeliveryDateNode
+     */
+    public function getDeliveryDate()
+    {
+        return $this->deliveryDate;
+    }
+
+    /**
+     * @param DeliveryDateNode $deliveryDate
+     */
+    public function setDeliveryDate($deliveryDate)
+    {
+        $this->deliveryDate = $deliveryDate;
     }
 }
