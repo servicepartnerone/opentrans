@@ -48,6 +48,26 @@ class OrderInfoNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
+     * @Serializer\SerializedName("DELIVERY_DATE")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\DeliveryDateNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\DeliveryDateNode
+     */
+    protected $deliveryDate;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("ORDER_PARTIES")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\OrderPartiesNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\OrderPartiesNode
+     */
+    protected $orderParties;
+
+    /**
+     *
+     * @Serializer\Expose
      * @Serializer\SerializedName("PRICE_CURRENCY")
      * @Serializer\Type("string")
      *
@@ -75,26 +95,6 @@ class OrderInfoNode extends AbstractNode
      * @var array|\SE\Component\OpenTrans\Node\Order\RemarkNode
      */
     protected $remarks;
-
-    /**
-     *
-     * @Serializer\Expose
-     * @Serializer\SerializedName("ORDER_PARTIES")
-     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\OrderPartiesNode")
-     *
-     * @var \SE\Component\OpenTrans\Node\Order\OrderPartiesNode
-     */
-    protected $orderParties;
-
-    /**
-     *
-     * @Serializer\Expose
-     * @Serializer\SerializedName("DELIVERY_DATE")
-     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\DeliveryDateNode")
-     *
-     * @var \SE\Component\OpenTrans\Node\Order\DeliveryDateNode
-     */
-    protected $deliveryDate;
 
     /**
      *

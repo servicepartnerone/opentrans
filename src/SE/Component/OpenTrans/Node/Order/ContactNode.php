@@ -35,6 +35,17 @@ class ContactNode extends AbstractNode
      */
     protected $phone = array();
 
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("FAX")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $fax;
+
     /**
      *
      * @Serializer\Expose
@@ -48,12 +59,23 @@ class ContactNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
-     * @Serializer\SerializedName("FAX")
+     * @Serializer\SerializedName("PUBLIC_KEY")
      * @Serializer\Type("string")
      *
      * @var string
      */
-    protected $fax;
+    protected $publicKey;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("URL")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $url;
+
 
     /**
      * @return string
@@ -126,5 +148,38 @@ class ContactNode extends AbstractNode
     {
         $this->fax = $fax;
     }
+
+    /**
+     * @return string
+     */
+    public function getPublicKey()
+    {
+        return $this->publicKey;
+    }
+
+    /**
+     * @param string $publicKey
+     */
+    public function setPublicKey($publicKey)
+    {
+        $this->publicKey = $publicKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
 
 }

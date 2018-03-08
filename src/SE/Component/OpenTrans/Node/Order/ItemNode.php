@@ -50,22 +50,32 @@ class ItemNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
-     * @Serializer\SerializedName("ARTICLE_PRICE")
-     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\ArticlePriceNode")
-     *
-     * @var \SE\Component\OpenTrans\Node\Order\ArticlePriceNode
-     */
-    protected $articlePrice;
-
-    /**
-     *
-     * @Serializer\Expose
      * @Serializer\SerializedName("QUANTITY")
      * @Serializer\Type("float")
      *
      * @var float
      */
     protected $quantity;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("ORDER_UNIT")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $orderUnit;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("ARTICLE_PRICE")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\ArticlePriceNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\ArticlePriceNode
+     */
+    protected $articlePrice;
 
     /**
      *
@@ -80,12 +90,12 @@ class ItemNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
-     * @Serializer\SerializedName("ORDER_UNIT")
-     * @Serializer\Type("string")
+     * @Serializer\Type("array<SE\Component\OpenTrans\Node\Order\RemarkNode>")
+     * @Serializer\XmlList(inline=true, entry="REMARK")
      *
-     * @var string
+     * @var array|\SE\Component\OpenTrans\Node\Order\RemarkNode
      */
-    protected $orderUnit;
+    protected $remarks;
 
     /**
      *
@@ -189,6 +199,22 @@ class ItemNode extends AbstractNode
     public function setOrderUnit($orderUnit)
     {
         $this->orderUnit = $orderUnit;
+    }
+
+    /**
+     * @return array|RemarkNode
+     */
+    public function getRemarks()
+    {
+        return $this->remarks;
+    }
+
+    /**
+     * @param array|RemarkNode $remarks
+     */
+    public function setRemarks($remarks)
+    {
+        $this->remarks = $remarks;
     }
 
 }
