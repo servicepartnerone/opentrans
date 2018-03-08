@@ -80,7 +80,7 @@ class ArticlePriceNodeTest extends \PHPUnit_Framework_TestCase
             'tag' => 'ARTICLE_PRICE', 'children' => array( 'count' => 4)
         ), $xml);
 
-        $this->assertTag(array('parent' => $parent, 'tag' => 'FULL_PRICE'), $xml);
+        $this->assertTag(array('parent' => $parent, 'tag' => 'PRICE_LINE_AMOUNT'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'PRICE_AMOUNT'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'DISCOUNT_PERCENT'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'DISCOUNT_VALUE'), $xml);
