@@ -29,7 +29,7 @@ abstract class AbstractNode implements NodeInterface
      * @Serializer\XmlKeyValuePairs
      * @Serializer\XmlList(inline=true)
      * @Serializer\Accessor(getter="getNormalizedCustomEntries")
-     *
+     * @Serializer\ReadOnly
      * @var array
      */
     protected $customEntries = array();
@@ -56,6 +56,10 @@ abstract class AbstractNode implements NodeInterface
      */
     public function addCustomEntry($key, $value)
     {
+        if(empty($this->customEntries)) {
+            $this->customEntries = array();
+        }
+
         $this->customEntries = array_merge(
             $this->customEntries,
             array($key => $value)
@@ -77,6 +81,9 @@ abstract class AbstractNode implements NodeInterface
      */
     public function getNormalizedCustomEntries()
     {
+        if(empty($this->customEntries)) {
+            return null;
+        }
         return Util::arrayChangeKeyCaseRecursive($this->customEntries, CASE_UPPER);
     }
 }

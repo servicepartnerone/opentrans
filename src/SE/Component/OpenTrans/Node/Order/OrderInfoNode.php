@@ -13,8 +13,6 @@ namespace SE\Component\OpenTrans\Node\Order;
 use \JMS\Serializer\Annotation as Serializer;
 
 use \SE\Component\OpenTrans\Node\AbstractNode;
-use \SE\Component\OpenTrans\Node\Order\Remark;
-use \SE\Component\OpenTrans\Node\Order\OrderPartiesNode;
 
 /**
  *
@@ -80,6 +78,7 @@ class OrderInfoNode extends AbstractNode
      * @Serializer\Expose
      * @Serializer\SerializedName("PAYMENT")
      * @Serializer\Type("array<array, array>")
+     * @Serializer\ReadOnly
      * @Serializer\XmlKeyValuePairs
      *
      * @var array
