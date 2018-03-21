@@ -105,6 +105,9 @@ class DocumentNode extends AbstractNode
     public function setItems(array $items)
     {
         $this->items = $items;
+        if($this->summary instanceof SummaryNode) {
+            $this->summary->setTotalItemCount(count($this->items));
+        }
     }
 
     /**
@@ -114,6 +117,9 @@ class DocumentNode extends AbstractNode
     public function addItem(ItemNode $item)
     {
         $this->items []= $item;
+        if($this->summary instanceof SummaryNode) {
+            $this->summary->setTotalItemCount(count($this->items));
+        }
     }
 
     /**

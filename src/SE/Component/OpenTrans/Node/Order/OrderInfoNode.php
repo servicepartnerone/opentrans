@@ -13,8 +13,6 @@ namespace SE\Component\OpenTrans\Node\Order;
 use \JMS\Serializer\Annotation as Serializer;
 
 use \SE\Component\OpenTrans\Node\AbstractNode;
-use \SE\Component\OpenTrans\Node\Order\Remark;
-use \SE\Component\OpenTrans\Node\Order\OrderPartiesNode;
 
 /**
  *
@@ -48,6 +46,26 @@ class OrderInfoNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
+     * @Serializer\SerializedName("DELIVERY_DATE")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\DeliveryDateNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\DeliveryDateNode
+     */
+    protected $deliveryDate;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("ORDER_PARTIES")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\OrderPartiesNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\OrderPartiesNode
+     */
+    protected $orderParties;
+
+    /**
+     *
+     * @Serializer\Expose
      * @Serializer\SerializedName("PRICE_CURRENCY")
      * @Serializer\Type("string")
      *
@@ -75,16 +93,6 @@ class OrderInfoNode extends AbstractNode
      * @var array|\SE\Component\OpenTrans\Node\Order\RemarkNode
      */
     protected $remarks;
-
-    /**
-     *
-     * @Serializer\Expose
-     * @Serializer\SerializedName("ORDER_PARTIES")
-     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\OrderPartiesNode")
-     *
-     * @var \SE\Component\OpenTrans\Node\Order\OrderPartiesNode
-     */
-    protected $orderParties;
 
     /**
      *
@@ -205,5 +213,21 @@ class OrderInfoNode extends AbstractNode
     public function getPayment()
     {
         return $this->payment;
+    }
+
+    /**
+     * @return DeliveryDateNode
+     */
+    public function getDeliveryDate()
+    {
+        return $this->deliveryDate;
+    }
+
+    /**
+     * @param DeliveryDateNode $deliveryDate
+     */
+    public function setDeliveryDate($deliveryDate)
+    {
+        $this->deliveryDate = $deliveryDate;
     }
 }

@@ -38,6 +38,9 @@ class NodeLoader
     const NODE_ORDER_PARTYID         = 'node.order.partyid';
     const NODE_ORDER_REMARK          = 'node.order.remark';
     const NODE_ORDER_SUMMARY         = 'node.order.summary';
+    const NODE_ORDER_DELIVERYDATE    = 'node.order.deliverydate';
+    const NODE_ORDER_CONTACT         = 'node.order.contact';
+    const NODE_ORDER_PHONE           = 'node.order.phone';
 
     /**
      *
@@ -62,6 +65,9 @@ class NodeLoader
         self::NODE_ORDER_PARTYID         => '\SE\Component\OpenTrans\Node\Order\PartyIdNode',
         self::NODE_ORDER_PARTYCOLLECTION => '\SE\Component\OpenTrans\Node\Order\PartyCollectionNode',
         self::NODE_ORDER_REMARK          => '\SE\Component\OpenTrans\Node\Order\RemarkNode',
+        self::NODE_ORDER_DELIVERYDATE    => '\SE\Component\OpenTrans\Node\Order\DeliveryDateNode',
+        self::NODE_ORDER_CONTACT         => '\SE\Component\OpenTrans\Node\Order\ContactNode',
+        self::NODE_ORDER_PHONE           => '\SE\Component\OpenTrans\Node\Order\PhoneNode',
     );
 
     /**
