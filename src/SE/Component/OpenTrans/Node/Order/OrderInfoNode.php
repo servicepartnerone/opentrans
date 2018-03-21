@@ -78,7 +78,6 @@ class OrderInfoNode extends AbstractNode
      * @Serializer\Expose
      * @Serializer\SerializedName("PAYMENT")
      * @Serializer\Type("array<array, array>")
-     * @Serializer\ReadOnly
      * @Serializer\XmlKeyValuePairs
      *
      * @var array

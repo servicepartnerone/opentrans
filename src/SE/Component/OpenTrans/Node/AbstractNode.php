@@ -29,7 +29,6 @@ abstract class AbstractNode implements NodeInterface
      * @Serializer\XmlKeyValuePairs
      * @Serializer\XmlList(inline=true)
      * @Serializer\Accessor(getter="getNormalizedCustomEntries")
-     * @Serializer\ReadOnly
      * @var array
      */
     protected $customEntries = array();
