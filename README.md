@@ -95,6 +95,12 @@ Returns:
 
 use \SE\Component\OpenTrans;
 
+//to allow for loading from annotations
+AnnotationRegistry::registerAutoloadNamespace(
+    'JMS\Serializer\Annotation',
+    dirname(__FILE__). "/../vendor/jms/serializer/src"
+);
+
 // Pick a factory to create your document (i.e. an Order)
 $loader = new OpenTrans\NodeLoader();
 $factory = new OpenTrans\DocumentFactory\OrderFactory($loader);

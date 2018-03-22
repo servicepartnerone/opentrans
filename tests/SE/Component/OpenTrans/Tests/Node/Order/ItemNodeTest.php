@@ -79,16 +79,23 @@ class ItemNodeTest extends \PHPUnit_Framework_TestCase
         $articlePrice->setPriceAmount($priceAmount = rand(10000,99999));
         $node->setArticlePrice($articlePrice);
 
+        $deliveryDate = new \SE\Component\OpenTrans\Node\Order\DeliveryDateNode();
+        $deliveryDate->setType("test");
+        $deliveryDate->setDeliveryStartDate($endDate = new \DateTime("2001-03-28T09:30:00+01:00"));
+        $deliveryDate->setDeliveryEndDate($startDate = new \DateTime("2001-03-28T09:30:00+01:00"));
+
+        $node->setDeliveryDate($deliveryDate);
+        $node->setOrderUnit("HUSO");
         $xml = $serializer->serialize($node, 'xml');
         $this->assertTag($parent = array(
-            'tag' => 'ORDER_ITEM', 'children' => array( 'count' => 4)
+            'tag' => 'ORDER_ITEM', 'children' => array( 'count' => 6)
         ), $xml, $xml);
 
         $this->assertTag(array('parent' => $parent, 'tag' => 'LINE_ITEM_ID'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'ARTICLE_ID'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'QUANTITY'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'ARTICLE_PRICE'), $xml);
-
+        $this->assertTag(array('parent' => $parent, 'tag' => 'DELIVERY_DATE'), $xml);
 
         /* @var $actual \SE\Component\OpenTrans\Node\Order\ItemNode */
         $actual = $serializer->deserialize($xml, get_class($node), 'xml');

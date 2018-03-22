@@ -15,6 +15,7 @@ use \JMS\Serializer\Annotation as Serializer;
 use \SE\Component\OpenTrans\Node\AbstractNode;
 use \SE\Component\OpenTrans\Node\Order\ArticleIdNode;
 use \SE\Component\OpenTrans\Node\Order\ArticlePriceNode;
+use \SE\Component\OpenTrans\Node\Order\DeliveryDateNode;
 
 /**
  *
@@ -49,6 +50,26 @@ class ItemNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
+     * @Serializer\SerializedName("QUANTITY")
+     * @Serializer\Type("float")
+     *
+     * @var float
+     */
+    protected $quantity;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("ORDER_UNIT")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $orderUnit;
+
+    /**
+     *
+     * @Serializer\Expose
      * @Serializer\SerializedName("ARTICLE_PRICE")
      * @Serializer\Type("SE\Component\OpenTrans\Node\Order\ArticlePriceNode")
      *
@@ -59,12 +80,22 @@ class ItemNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
-     * @Serializer\SerializedName("QUANTITY")
-     * @Serializer\Type("float")
+     * @Serializer\SerializedName("DELIVERY_DATE")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\DeliveryDateNode")
      *
-     * @var float
+     * @var \SE\Component\OpenTrans\Node\Order\DeliveryDateNode
      */
-    protected $quantity;
+    protected $deliveryDate;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("array<SE\Component\OpenTrans\Node\Order\RemarkNode>")
+     * @Serializer\XmlList(inline=true, entry="REMARK")
+     *
+     * @var array|\SE\Component\OpenTrans\Node\Order\RemarkNode
+     */
+    protected $remarks;
 
     /**
      *
@@ -138,5 +169,52 @@ class ItemNode extends AbstractNode
         return $this->articlePrice;
     }
 
+    /**
+     * @return DeliveryDateNode
+     */
+    public function getDeliveryDate()
+    {
+        return $this->deliveryDate;
+    }
+
+    /**
+     * @param DeliveryDateNode $deliveryDate
+     */
+    public function setDeliveryDate(DeliveryDateNode $deliveryDate)
+    {
+        $this->deliveryDate = $deliveryDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderUnit()
+    {
+        return $this->orderUnit;
+    }
+
+    /**
+     * @param string $orderUnit
+     */
+    public function setOrderUnit($orderUnit)
+    {
+        $this->orderUnit = $orderUnit;
+    }
+
+    /**
+     * @return array|RemarkNode
+     */
+    public function getRemarks()
+    {
+        return $this->remarks;
+    }
+
+    /**
+     * @param array|RemarkNode $remarks
+     */
+    public function setRemarks($remarks)
+    {
+        $this->remarks = $remarks;
+    }
 
 }

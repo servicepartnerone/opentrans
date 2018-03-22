@@ -13,6 +13,7 @@ namespace SE\Component\OpenTrans\Node\Order;
 use \JMS\Serializer\Annotation as Serializer;
 
 use \SE\Component\OpenTrans\Node\AbstractNode;
+use \SE\Component\OpenTrans\Node\Order\ContactNode;
 
 /**
  *
@@ -57,6 +58,26 @@ class AddressNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
+     * @Serializer\SerializedName("DEPARTMENT")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $department;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("CONTACT")
+     * @Serializer\Type("SE\Component\OpenTrans\Node\Order\ContactNode")
+     *
+     * @var \SE\Component\OpenTrans\Node\Order\ContactNode
+     */
+    protected $contact;
+
+    /**
+     *
+     * @Serializer\Expose
      * @Serializer\SerializedName("STREET")
      * @Serializer\Type("string")
      *
@@ -87,6 +108,16 @@ class AddressNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
+     * @Serializer\SerializedName("STATE")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $state;
+
+    /**
+     *
+     * @Serializer\Expose
      * @Serializer\SerializedName("COUNTRY")
      * @Serializer\Type("string")
      *
@@ -107,6 +138,16 @@ class AddressNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
+     * @Serializer\SerializedName("FAX")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $fax;
+
+    /**
+     *
+     * @Serializer\Expose
      * @Serializer\SerializedName("EMAIL")
      * @Serializer\Type("string")
      *
@@ -117,12 +158,22 @@ class AddressNode extends AbstractNode
     /**
      *
      * @Serializer\Expose
-     * @Serializer\SerializedName("CHARGE_VAT")
+     * @Serializer\SerializedName("PUBLIC_KEY")
      * @Serializer\Type("string")
      *
      * @var string
      */
-    protected $chargeVat;
+    protected $publicKey;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("URL")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $url;
 
     /**
      *
@@ -305,20 +356,98 @@ class AddressNode extends AbstractNode
     }
 
     /**
-     *
-     * @param string $chargeVat
+     * @return string
      */
-    public function setChargeVat($chargeVat)
+    public function getDepartment()
     {
-        $this->chargeVat = $chargeVat;
+        return $this->department;
     }
 
     /**
-     *
+     * @param string $department
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+    }
+
+    /**
      * @return string
      */
-    public function getChargeVat()
+    public function getState()
     {
-        return $this->chargeVat;
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * @param string $fax
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPublicKey()
+    {
+        return $this->publicKey;
+    }
+
+    /**
+     * @param string $publicKey
+     */
+    public function setPublicKey($publicKey)
+    {
+        $this->publicKey = $publicKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return ContactNode
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    /**
+     * @param ContactNode $contact
+     */
+    public function setContact(ContactNode $contact)
+    {
+        $this->contact = $contact;
     }
 }

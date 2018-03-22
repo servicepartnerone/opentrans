@@ -35,18 +35,6 @@ class ArticlePriceNode extends AbstractNode
      */
     protected $type;
 
-
-    /**
-     * Einzelpreis * Quantity
-     *
-     * @Serializer\Expose
-     * @Serializer\SerializedName("FULL_PRICE")
-     * @Serializer\Type("string")
-     *
-     * @var string
-     */
-    protected $fullPrice;
-
     /**
      * Einzelpreis
      *
@@ -57,6 +45,17 @@ class ArticlePriceNode extends AbstractNode
      * @var string
      */
     protected $priceAmount;
+
+    /**
+     * Einzelpreis * Quantity
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("PRICE_LINE_AMOUNT")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $fullPrice;
 
     /**
      *
@@ -77,7 +76,6 @@ class ArticlePriceNode extends AbstractNode
      * @var string
      */
     protected $discountValue;
-
     /**
      *
      * @param string $discountPercent
