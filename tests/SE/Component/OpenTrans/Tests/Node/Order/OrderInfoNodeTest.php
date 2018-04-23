@@ -47,6 +47,9 @@ class OrderInfoNodeTest extends \PHPUnit_Framework_TestCase
         $node->setOrderId($orderId = rand(1,1000000));
         $this->assertEquals($orderId, $node->getOrderId());
 
+        $node->setAltCustomerOrderId($altOrderId = rand(1,1000000));
+        $this->assertEquals($altOrderId, $node->getAltCustomerOrderId());
+
         $orderDate = new \DateTime(sprintf('@%s', rand(1, time())));
         $node->setOrderDate($orderDate);
         $this->assertSame($orderDate, $node->getOrderDate());
@@ -110,6 +113,7 @@ class OrderInfoNodeTest extends \PHPUnit_Framework_TestCase
 
         $node->setCurrency($currency = sha1(uniqid(microtime(true))));
         $node->setOrderId($orderId = rand(1,1000000));
+        $node->setAltCustomerOrderId($altOrderId = rand(1,1000000));
         $orderDate = new \DateTime(sprintf('@%s', rand(1, time())));
         $node->setOrderDate($orderDate);
         $orderParties = new \SE\Component\OpenTrans\Node\Order\OrderPartiesNode();
@@ -130,10 +134,11 @@ class OrderInfoNodeTest extends \PHPUnit_Framework_TestCase
 
         $xml = $serializer->serialize($node, 'xml');
         $this->assertTag($parent = array(
-            'tag' => 'ORDER_INFO', 'children' => array( 'count' => 6)
+            'tag' => 'ORDER_INFO', 'children' => array( 'count' => 7)
         ), $xml, $xml);
 
         $this->assertTag(array('parent' => $parent, 'tag' => 'ORDER_ID'), $xml);
+        $this->assertTag(array('parent' => $parent, 'tag' => 'ALT_CUSTOMER_ORDER_ID'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'ORDER_DATE'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'PRICE_CURRENCY'), $xml);
         $this->assertTag(array('parent' => $parent, 'tag' => 'ORDER_PARTIES'), $xml);
@@ -147,6 +152,7 @@ class OrderInfoNodeTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(get_class($orderParties), $actual->getOrderParties());
         $this->assertEquals($orderDate, $actual->getOrderDate());
         $this->assertEquals($orderId, $actual->getOrderId());
+        $this->assertEquals($altOrderId, $actual->getAltCustomerOrderId());
         $this->assertEquals($currency, $actual->getCurrency());
 
         // XmlKeyValuePairs can not be deserialized, see https://github.com/schmittjoh/serializer/issues/139

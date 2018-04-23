@@ -33,6 +33,17 @@ class OrderInfoNode extends AbstractNode
      * @var string
      */
     protected $orderId;
+
+    /**
+     *
+     * @Serializer\Expose
+     * @Serializer\SerializedName("ALT_CUSTOMER_ORDER_ID")
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $altCustomerOrderId;
+
     /**
      *
      * @Serializer\Expose
@@ -137,6 +148,22 @@ class OrderInfoNode extends AbstractNode
     public function getOrderId()
     {
         return $this->orderId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAltCustomerOrderId()
+    {
+        return $this->altCustomerOrderId;
+    }
+
+    /**
+     * @param string $altCustomerOrderId
+     */
+    public function setAltCustomerOrderId($altCustomerOrderId)
+    {
+        $this->altCustomerOrderId = $altCustomerOrderId;
     }
 
     /**
